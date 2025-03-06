@@ -1,13 +1,15 @@
-import Sidebar from './Sidebar'
-import MainContainer from './MainContainer'
+import Sidebar from "./Sidebar";
+import MainContainer from "./MainContainer";
+import { useSelector } from "react-redux";
 
 const Body = () => {
+  const menuToggle = useSelector((store) => store.app.isMenuOpen);
   return (
     <div className="flex">
-        <Sidebar/>
-        <MainContainer/>
+      {menuToggle && <Sidebar />}
+      <MainContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Body
+export default Body;
