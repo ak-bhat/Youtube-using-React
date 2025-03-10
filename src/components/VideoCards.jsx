@@ -3,7 +3,7 @@ const VideoCards = ({info}) => {
     const{channelTitle, thumbnails, title} = snippet || {};
     
   return (
-    <div className="p-2 m-2 w-64 shadow-lg rounded-lg">
+    <div className="p-2 m-2 w-64 h-full flex flex-col overflow-hidden shadow-lg rounded-lg">
         <img className="rounded-lg" alt="thumbnail" src={thumbnails?.medium.url}/>
         <ul>
             <li className="font-bold py-2">{title}</li>
