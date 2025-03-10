@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SUGGESTION_API } from "../utils/constants";
-import {cacheResults} from "../utils/searchSlice"
+import {cacheResults, selectedQuery} from "../utils/searchSlice"
 
 const Head = () => {
   const dispatch = useDispatch();
@@ -37,6 +37,12 @@ const Head = () => {
   const menuToggle = () => {
     dispatch(toggleMenu());
   };
+
+  const handleClick = (suggestion) =>{
+    dispatch(selectedQuery(suggestion))
+    setSearchQuery(suggestion);  
+  }
+
   return (
     <div className="grid grid-flow-col p-2 shadow-lg w-screen bg-white fixed z-50">
       <div className="flex col-span-1">
@@ -60,8 +66,8 @@ const Head = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-          />
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+            />
           <button className="bg-gray-300 rounded-r-full border border-gray-500 px-5 py-1">
             🔍
           </button>
@@ -73,6 +79,7 @@ const Head = () => {
                 <li
                   key={index}
                   className="py-2 shadow-lg hover:bg-gray-400 cursor-pointer rounded-lg"
+                  onMouseDown={()=>handleClick(suggestion)}
                 >
                   🔍 {suggestion}
                 </li>

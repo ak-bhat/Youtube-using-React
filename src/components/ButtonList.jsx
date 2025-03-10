@@ -21,8 +21,8 @@ const ButtonList = () => {
 
   return (
       <div className="flex w-max space-x-4 px-4 py-2">
-        {list.map((name, index) => (
-          <Button key={index} name={name} />
+        {list.map((name) => (
+          <Button key={name} name={name} />
         ))}
       </div>
   );
