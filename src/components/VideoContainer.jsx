@@ -23,8 +23,11 @@ const VideoContainer = () => {
   };
   return (
     <div className="flex flex-wrap">
-      {videos.map((video) => (
-        <Link key={video.etag} to={"/watch?v="+video.id.videoId || video.id}><VideoCards info={video} /></Link>
+      {selectedQuery? videos.map((video) => (
+        <Link key={video.etag} to={"/watch?v="+video.id.videoId}><VideoCards info={video} /></Link>
+      )):
+      videos.map((video) => (
+        <Link key={video.etag} to={"/watch?v="+video.id}><VideoCards info={video} /></Link>
       ))}
     </div>
   );
